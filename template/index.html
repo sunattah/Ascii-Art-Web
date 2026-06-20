@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ASCII Art Generator</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        pre { background: #f4f4f4; padding: 15px; font-family: monospace; overflow-x: auto; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>ASCII Art Web Generator</h1>
+
+    <!-- The form sends data to the POST /ascii-art endpoint -->
+    <form action="/ascii-art" method="POST">
+        <label for="text">Enter your text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required>{{.InputText}}</textarea>
+        <br><br>
+
+        <p>Select a banner:</p>
+        <input type="radio" id="standard" name="banner" value="standard" checked>
+        <label for="standard">Standard</label>
+
+        <input type="radio" id="shadow" name="banner" value="shadow">
+        <label for="shadow">Shadow</label>
+
+        <input type="radio" id="thinkertoy" name="banner" value="thinkertoy">
+        <label for="thinkertoy">Thinkertoy</label>
+        <br><br>
+
+        <button type="submit">Generate ASCII Art</button>
+    </form>
+
+    <hr>
+
+    <!-- Displays result or errors dynamically -->
+    {{if .Error}}
+        <p class="error">{{.Error}}</p>
+    {{else if .Result}}
+        <h2>Result:</h2>
+        <pre>{{.Result}}</pre>
+    {{end}}
+</body>
+</html>
