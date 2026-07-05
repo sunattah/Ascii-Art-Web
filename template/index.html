@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>ASCII Art Web</title></head>
+<body>
+    <h1>Ascii-Art-Web</h1>
+    <form action="/ascii-art" method="POST">
+        <textarea name="text"></textarea><br>
+        <!-- <input type="radio" name="banner" value="standard" checked> Standard
+        <input type="radio" name="banner" value="shadow"> Shadow
+        <input type="radio" name="banner" value="thinkertoy"> Thinkertoy<br> -->
+        <button type="submit">Generate</button>
+    </form>
+    <pre>{{.Result}}</pre>
+</body>
+</html>
