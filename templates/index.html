@@ -1,0 +1,58 @@
+<!-- <!DOCTYPE html>
+<html>
+<head><title>ASCII Art Web</title></head>
+<body>
+    <h1>Ascii-Art-Web</h1>
+    <form action="/ascii-art" method="POST">
+        <textarea name="text"></textarea><br>
+        <input type="radio" name="banner" value="standard" checked> Standard
+        <input type="radio" name="banner" value="shadow"> Shadow
+        <input type="radio" name="banner" value="thinkertoy"> Thinkertoy<br>
+        <button type="submit">Generate</button>
+    </form>
+    <pre>{{.Result}}</pre>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ASCII Art Web</title>
+</head>
+<body>
+
+  <h1>ASCII ART WEB</h1>
+  <p>Convert text into ASCII art with your choice of banner style.</p>
+
+  <form action="/ascii-art" method="POST">
+
+    <label for="text">Your text</label><br>
+    <textarea id="text" name="text" placeholder="Type something here..." required>{{.Text}}</textarea><br><br>
+
+    <input type="radio" id="standard" name="banner" value="standard"
+      {{if or (eq .Banner "standard") (eq .Banner "")}}checked{{end}}>
+    <label for="standard">Standard</label>
+
+    <input type="radio" id="shadow" name="banner" value="shadow"
+      {{if eq .Banner "shadow"}}checked{{end}}>
+    <label for="shadow">Shadow</label>
+
+    <input type="radio" id="thinkertoy" name="banner" value="thinkertoy"
+      {{if eq .Banner "thinkertoy"}}checked{{end}}>
+    <label for="thinkertoy">Thinkertoy</label><br><br>
+
+    <button type="submit">Generate</button>
+
+    {{if .Error}}<p>{{.Error}}</p>{{end}}
+
+  </form>
+
+  {{if .Result}}
+  <h2>Result</h2>
+  <pre>{{.Result}}</pre>
+  {{end}}
+
+</body>
+</html>
